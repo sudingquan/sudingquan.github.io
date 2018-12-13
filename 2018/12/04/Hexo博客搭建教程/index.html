@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="write the code，change the world">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我感觉很难受">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="前言本文采用 CC BY-NC-SA 4.0 许可协议，转载请注明出处！  环境准备 Node.js 下载，并安装；    Git 下载，并安装；    安装Hexo，在命令行运行以下命令：  npm install -g hexo-cli     在命令行依次运行以下命令（folder为你的博客文件夹名）：  123hexo init &amp;lt;folder&amp;gt;cd &amp;lt;folder&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客搭建教程">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/Hexo博客搭建教程/index.html">
 <meta property="og:site_name" content="我感觉很难受">
-<meta property="og:description" content="write the code，change the world">
+<meta property="og:description" content="前言本文采用 CC BY-NC-SA 4.0 许可协议，转载请注明出处！  环境准备 Node.js 下载，并安装；    Git 下载，并安装；    安装Hexo，在命令行运行以下命令：  npm install -g hexo-cli     在命令行依次运行以下命令（folder为你的博客文件夹名）：  123hexo init &amp;lt;folder&amp;gt;cd &amp;lt;folder&amp;gt">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-13T16:25:32.353Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我感觉很难受">
-<meta name="twitter:description" content="write the code，change the world">
+<meta name="twitter:title" content="Hexo博客搭建教程">
+<meta name="twitter:description" content="前言本文采用 CC BY-NC-SA 4.0 许可协议，转载请注明出处！  环境准备 Node.js 下载，并安装；    Git 下载，并安装；    安装Hexo，在命令行运行以下命令：  npm install -g hexo-cli     在命令行依次运行以下命令（folder为你的博客文件夹名）：  123hexo init &amp;lt;folder&amp;gt;cd &amp;lt;folder&amp;gt">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/04/Hexo博客搭建教程/">
 
 
 
 
 
-  <title>我感觉很难受</title>
+  <title>Hexo博客搭建教程 | 我感觉很难受</title>
   
 
 
@@ -143,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -217,155 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/hexo博客备份/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sudingquan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我感觉很难受">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/hexo博客备份/" itemprop="url">hexo博客备份</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T23:46:45+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>针对博客已经搭建并发布过文章的。    <br><br><br>1.在你的博客仓库创建一个分支hexo(名称随意);<br><br><br>2.设置hexo为默认分支;<br><br><br>3.将博客仓库clone至本地，将之前的Hexo文件夹中的<code>_config.yml</code>，<code>themes/</code>，<code>source</code>，<code>scffolds/</code>，<code>package.json</code>，<code>.gitignore</code>复制到你克隆下来的仓库文件夹，即Username.github.io；(Username是你自己的用户名);<br><br><br>这里说一下为什么只需要拷贝6个，而不需要全部：  </p>
-<ul>
-<li><code>_config.yml</code>站点的配置文件，需要拷贝</li>
-<li><code>themes/</code>主题文件夹，需要拷贝</li>
-<li><code>source</code>博客文章的md文件，需要拷贝</li>
-<li><code>scaffolds/</code>文章的模板，需要拷贝</li>
-<li><code>package.json</code>安装包的名称，需要拷贝</li>
-<li><code>.gitignore</code>限定在push时哪些文件可以忽略，需要拷贝</li>
-<li><code>.git/</code>主题和站点都有，标志这是一个git项目，不需要拷贝</li>
-<li><code>node_modules/</code>是安装包的目录，在执行npm install的时候会重新生成，不需要拷贝</li>
-<li><code>public</code>是<code>hexo g</code>生成的静态网页，不需要拷贝</li>
-<li><code>.deploy_git</code>同上，<code>hexo g</code>也会生成，不需要拷贝</li>
-<li><code>db.json文件</code>，不需要拷贝<br><br><br>其实不需要拷贝的文件正是<code>.gitignore</code>中所忽略的。<br><br></li>
-</ul>
-<p>4.将<code>themes/你使用的主题文件夹</code>中的<code>.git/</code>删除，否则无法将主题文件夹push;  <br><br><br>5.cd 到 Username.github.io，执行<code>npm install</code>,<code>npm install hexo-deployer-git</code>;  <br><br><br>6.执行<code>git add .</code>，<code>git commit -m &quot;&quot;</code>，<code>git push origin hexo</code>来提交Hexo网站源文件;  <br><br><br>7.执行<code>hexo g -d</code>生成静态网页部署到github上。  <br><br><br>这样，Username.github.io仓库就有master分支保存静态网页，hexo分支保存源文件。</p>
-</li>
-<li><h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2>在本地对博客修改后  <br><br><ul>
-<li>执行<code>git add .</code>，<code>git commit -m &quot;&quot;</code>，<code>git push origin hexo</code>来提交Hexo网站源文件  <br><br></li>
-<li>执行<code>hexo g -d</code>生成静态网页部署到github上。  <br><br></li>
-</ul>
-</li>
-<li><h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2>换电脑改博客   <br><br><br>1.安装git;   <br><br><br>2.安装Nodejs和npm; <br><br><br>3.使用<code>git clone</code>将仓库拷贝至本地;<br><br><br>4.在文件夹内执行命令<code>npm install hexo-cli -g</code>、<code>npm install</code>、<code>npm install hexo-deployer-git</code>。<br><br><br><blockquote>
-<p>参考<br>原始链接：<a href="https://blog.itswincer.com/posts/7efd2818/" target="_blank" rel="noopener">https://blog.itswincer.com/posts/7efd2818/</a><br>文章作者：<a href="https://blog.itswincer.com?" target="_blank" rel="noopener">WincerChan</a></p>
-</blockquote>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -395,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/04/Hexo博客搭建教程/" itemprop="url">Hexo博客搭建教程</a></h1>
+          <h1 class="post-title" itemprop="name headline">Hexo博客搭建教程</h1>
         
 
         <div class="post-meta">
@@ -447,9 +299,7 @@
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处！</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处！</p>
 <hr>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
 <li><p><a href="http://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 下载，并安装；  </p>
@@ -536,8 +386,6 @@
 <p>至此，你的Hexo博客已经搭建在GithubPages，并可以通过域名 https://你的Github账号名称.github.io 访问。  </p>
 <hr>
 
-          
-        
       
     </div>
     
@@ -554,12 +402,28 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/04/hexo博客备份/" rel="prev" title="hexo博客备份">
+                hexo博客备份 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -569,10 +433,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -580,6 +445,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -600,8 +469,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -652,6 +530,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">2.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署至GithubPages"><span class="nav-number">3.</span> <span class="nav-text">部署至GithubPages</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -785,6 +679,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
