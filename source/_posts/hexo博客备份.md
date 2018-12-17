@@ -1,7 +1,8 @@
 ---
-title: hexo博客备份
+title: Hexo博客备份
 date: 2018-12-04 23:46:45
 tags: hexo
+categories: hexo
 ---
 - ## 正文
 针对博客已经搭建并发布过文章的。    <br/><br/>

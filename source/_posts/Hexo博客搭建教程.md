@@ -1,13 +1,14 @@
 ---
 title: Hexo博客搭建教程
 date: 2018-12-04 00:22:35
-tags: 
+tags: hexo
+categories: hexo
 ---
 ## 前言
 
 本文采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可协议，转载请注明出处！
 
----
+
 ## 环境准备
 1. [Node.js](http://nodejs.org/) 下载，并安装；  
 
@@ -42,7 +43,7 @@ npm install
 
 至此，你的Hexo博客已经搭建在本地。
 
----
+
 ## 部署至GithubPages
 1. 创建Github账号
 
@@ -83,5 +84,3 @@ npm install
    + 等待几十秒，打开：https://你的Github账号名称.github.io。  
 
 至此，你的Hexo博客已经搭建在GithubPages，并可以通过域名 https://你的Github账号名称.github.io 访问。  
-
----
