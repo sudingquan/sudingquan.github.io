@@ -224,3 +224,61 @@ reward:
     top: $sidebar-offset;
   }
 ```
+### 添加字数统计和阅读时间
+定位到你的博客下，运行以下命令：
+```
+$ npm install hexo-symbols-count-time --save
+```
+打开 `站点配置文件` ,在最后加入以下内容：
+```
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+```
+打开 `主题配置文件` ，搜索`symbols_count_time`并修改成以下内容：
+```
+symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 4
+  wpm: 275
+```
+### 显示当前浏览进度
+打开主题配置文件，修改以下内容：
+```
+# Back to top in sidebar
+b2t: true
+
+# Scroll percent label in b2t button
+scrollpercent: true
+```
+### 在右上角或者左上角实现fork me on github
+首先在[这里](https://blog.github.com/2008-12-19-github-ribbons/)或[这里](http://tholman.com/github-corners/)挑选你喜欢的样式并复制代码，然后将其中的链接改为你自己的微博地址，最后打开`themes/next/layout/_layout.swig`将改好的代码粘贴在`<div class="headband"></div>`下面。  
+
+### 添加点击爱心效果
+#### 创建js文件
+在`/themes/next/source/js/src`下新建文件 `clicklove.js`,然后将以下代码拷贝进去：
+```
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+```
+#### 修改_layout.swig
+在`\themes\next\layout\_layout.swig`文件末尾添加：
+```
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+```
+### 文章尾部添加版权信息
+打开 `主题配置文件` ,搜索`creative_commons`，将`post`修改为`true`。
+### 修改文章底部的那个带#号的标签
+修改模板`/themes/next/layout/_macro/post.swig`，搜索 `rel="tag">#`，将 `#` 换成`<i class="fa fa-tag"></i>`
+### 添加顶部加载条
+#### 安装插件
+定位到`/themes/next`，运行以下命令：
+```
+git clone https://github.com/theme-next/theme-next-pace source/lib/pace
+```
+#### 修改主题配置文件
+打开 `主题配置文件` 搜索`pace`，改为`true`,然后修改`pace-theme`为你喜欢的样式
