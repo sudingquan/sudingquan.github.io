@@ -66,7 +66,28 @@ auto_excerpt:
 ```
 将false改为true，length为预览文章的长度。
 ### 添加gitalk评论功能
+#### 注册新应用
+在GitHub上注册新应用，链接：https://github.com/settings/applications/new
 
+参数说明：
+Application name： # 应用名称，随意
+Homepage URL： # 网站URL，如 https://xxxxxxxx.github.io
+Application description # 描述，随意
+Authorization callback URL：# 网站URL，如 https://xxxxxxxx.github.io
+
+点击注册后，页面跳转到应用界面，其中`Client ID`和`Client Secret`在后面的配置中需要用到，到时复制粘贴即可
+#### 修改主题配置文件
+在`主题配置文件`中搜索`gitalk`字段：
+```
+gitalk:
+  enable: true
+  githubID: github帐号  
+  repo: 仓库名称
+  ClientID: Client ID
+  ClientSecret: Client Secret
+  adminUser: github帐号 #指定可初始化评论账户
+  distractionFreeMode: true
+```
 ### 添加「标签」页面
 在你的站点目录下，运行命令：
 ```shell
