@@ -41,7 +41,7 @@ Scheme 的切换通过更改 `主题配置文件`，搜索 scheme 关键字。 �
 编辑 `站点配置文件`， 将 language 设置成中文。配置如下
 
 ```
-language: zh-Hans
+language: zh-CN
 ```
 ### 设置作者昵称
 编辑 `站点配置文件`， 设置 author 为你的昵称。
@@ -282,3 +282,26 @@ git clone https://github.com/theme-next/theme-next-pace source/lib/pace
 ```
 #### 修改主题配置文件
 打开 `主题配置文件` 搜索`pace`，改为`true`,然后修改`pace-theme`为你喜欢的样式
+### 添加搜索服务
+添加百度/谷歌/本地 自定义站点内容搜索  
+
+1. 在站点的根目录下执行以下命令：
+```
+$ npm install hexo-generator-searchdb --save
+```
+2. 编辑 `站点配置文件` ，新增以下内容到任意位置：
+```
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+```
+3. 编辑 `主题配置文件` ，启用本地搜索功能：
+```
+# Local search
+local_search:
+  enable: true
+```
+### 添加分享服务
+编辑 `主题配置文件` ,
