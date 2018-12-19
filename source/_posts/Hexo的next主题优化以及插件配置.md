@@ -303,5 +303,43 @@ search:
 local_search:
   enable: true
 ```
+
 ### 添加分享服务
-编辑 `主题配置文件` ,
+1. 定位到`/themes/next`,运行以下命令：
+```
+git clone https://github.com/theme-next/theme-next-needmoreshare2 source/lib/needsharebutton
+```
+2. 编辑 `主题配置文件`
+```
+needmoreshare2:
+  enable: true
+  postbottom:
+    enable: true
+  float:
+    enable: true
+```
+
+### 添加在线聊天DaoVoice
+#### 注册
+首先需要注册一个 DaoVoice，[点击注册](http://dashboard.daovoice.io/get-started?invite_code=7f3d6e70)
+
+注册成功后，进入后台控制台，进入到 `应用设置-->安装到网站` 页面，可以得到一个 `app_id`。
+#### 设置
+打开 `themes/next/layout/_partials/head.swig` 文件中添加如下代码，位置随意：
+```css
+{% if theme.daovoice %}
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "{{theme.daovoice_app_id}}"
+    });
+  daovoice('update');
+  </script>
+{% endif %}
+```
+打开 `主题配置文件` ，添加以下代码：
+```
+# Online contact
+daovoice: true
+daovoice_app_id: 这里输入前面获取的app_id
+```
