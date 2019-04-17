@@ -256,7 +256,7 @@ b2t: true
 scrollpercent: true
 ```
 ### 在右上角或者左上角实现fork me on github
-首先在[这里](https://blog.github.com/2008-12-19-github-ribbons/)或[这里](http://tholman.com/github-corners/)挑选你喜欢的样式并复制代码，然后将其中的链接改为你自己的微博地址，最后打开`themes/next/layout/_layout.swig`将改好的代码粘贴在`<div class="headband"></div>`下面。  
+首先在[这里](https://blog.github.com/2008-12-19-github-ribbons/)或[这里](http://tholman.com/github-corners/)挑选你喜欢的样式并复制代码，然后将其中的链接改为你自己的github地址，最后打开`themes/next/layout/_layout.swig`将改好的代码粘贴在`<div class="headband"></div>`下面。  
 
 ### 添加点击爱心效果
 #### 创建js文件
