@@ -66,7 +66,7 @@ footer:
   icon:
     # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons
     # `heart` is recommended with animation in red (#ff0000).
-    name: 
+    name:
     # If you want to animate the icon, set it to true.
     animated: true
     # Change the color of icon, using Hex Code.
@@ -176,10 +176,10 @@ site_state: true
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/sudingquan || github
-  #E-Mail: mailto:yourname@gmail.com || envelope
+  E-Mail: mailto:1151015256@qq.com || envelope
   Weibo: https://weibo.com/u/5383112798 || weibo
   #Google: https://plus.google.com/yourname || google
-  Twitter: https://twitter.com/__minamikotori_ || twitter
+  #Twitter: https://twitter.com/yourname || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
   #VK Group: https://vk.com/yourname || vk
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
