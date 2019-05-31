@@ -14,7 +14,7 @@ Hexo默认的主题是landscape,但是~~爱折腾~~的我显然并不满足于�
 ## 安装NexT
 ### 下载主题
 在终端窗口下，定位到 Hexo 站点目录下。运行命令`git clone https://github.com/theme-next/hexo-theme-next themes/next`来安装主题。
-
+<!-- more -->
 ### 启用主题
 与所有 Hexo 主题启用的模式一样。 当 克隆/下载 完成后，打开 `站点配置文件`， 找到 theme 字段，并将其值更改为 next。  
 

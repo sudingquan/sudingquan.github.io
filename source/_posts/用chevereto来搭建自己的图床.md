@@ -5,7 +5,7 @@ tags: 图床
 categories: linux
 ---
 
-# 说明
+## 说明
 
 前段时间买了一个阿里云的学生服务器，之前一直用作学习linux的工具。最近写markdown文档的时候发现自己缺一个图床，于是我就想到了在自己的服务器上搭建一个图床。通过搜索，我找到了一个能在服务器上方便搭建图床的工具——`chevereto`。
 
@@ -16,8 +16,8 @@ categories: linux
 ![chevereto](http://39.105.82.248/images/2019/05/10/-2019-05-10-12.50.38.png)
 
 ***官网：*** [https://chevereto.com/](https://chevereto.com/)
-
-# 安装
+<!-- more -->
+## 安装
 
 **环境要求：**
 
