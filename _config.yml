@@ -78,10 +78,11 @@ theme: next-v7
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo :
+  - type: git
+    repo:
        github: git@github.com:sudingquan/sudingquan.github.io.git,master
        coding: git@git.dev.tencent.com:sudingquan/sudingquan.coding.me.git
+  - type: leancloud_counter_security_sync
 
 symbols_count_time:
   symbols: true
@@ -118,3 +119,10 @@ neat_js:
     - '**/*.min.js'
     - '**/jquery.fancybox.pack.js'
     - '**/index.js'
+
+leancloud_counter_security:
+  enable_sync: true
+  app_id: KPbRqACv2m6qvX2hKhyNSII6-gzGzoHsz
+  app_key: QR7S9gtVUcfCg5HS4ddQGtq9
+  username: sudingquan
+  password: 
