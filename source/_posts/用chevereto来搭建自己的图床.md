@@ -13,10 +13,12 @@ categories: linux
 
 `chevereto`是一个功能非常强大的图床，而`chevereto`的安装也非常简单，并且支持中文，可以上传本地图片或通过url上传图片。效果如下
 
-![chevereto](http://39.105.82.248/images/2019/05/10/-2019-05-10-12.50.38.png)
-
 ***官网：*** [https://chevereto.com/](https://chevereto.com/)
 <!-- more -->
+
+![chevereto](http://39.105.82.248/images/2019/05/10/-2019-05-10-12.50.38.png)
+
+
 ## 安装
 
 **环境要求：**
