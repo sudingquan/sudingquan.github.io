@@ -4,4 +4,5 @@
 {"title":"Hexo的next主题优化以及插件配置","url":"/2018/12/15/Hexo的next主题优化以及插件配置/"},
 {"title":"用chevereto来搭建自己的图床","url":"/2019/05/10/用chevereto来搭建自己的图床/"},
 {"title":"linux select函数用法详解","url":"/2019/07/06/linux-select函数用法详解/"},
+{"title":"linux中IO多路复用的三种方式select、poll、epoll","url":"/2019/07/09/linux中IO多路复用的三种方式select、poll、epoll/"},
 ]
