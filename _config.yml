@@ -81,7 +81,7 @@ deploy:
   - type: git
     repo:
        github: git@github.com:sudingquan/sudingquan.github.io.git,master
-       coding: git@git.dev.tencent.com:sudingquan/sudingquan.coding.me.git
+       coding: git@e.coding.net:sudingquan/sudingquan.coding.me/sudingquan.coding.me.git
   - type: leancloud_counter_security_sync
 
 symbols_count_time:
