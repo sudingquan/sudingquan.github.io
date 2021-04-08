@@ -28,7 +28,7 @@ after_success:
   - MESSAGE=$(git log -n1 --pretty=format:"%s at %ai")
   - cd dist
   - git init
-  - git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/xiongdahu/xiongdahu.github.io.git
+  - git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/sudingquan/sudingquan.github.io.git
   - git add .
   - git commit -m "${MESSAGE}"
   - git push origin master -f
