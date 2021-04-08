@@ -2,7 +2,7 @@
 title: Hexo博客搭建教程
 date: 2018-12-04 00:22:35
 tags: ["hexo"]
-categories: 
+categories:
   - "hexo"
 ---
 ## 前言
