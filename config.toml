@@ -1,4 +1,4 @@
-baseURL = "http://prohub.pub/"
+baseURL = "https://prohub.pub/"
 # [en, zh-cn, fr, ...] 设置默认的语言
 defaultContentLanguage = "zh-cn"
 # 网站语言, 仅在这里 CN 大写
@@ -8,27 +8,143 @@ hasCJKLanguage = true
 # 网站标题
 #title = "无标题文档"
 #title = "GayHub"
-title = "ProHub"
+#title = "ProHub"
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = ["hugo-search-fuse-js", "LoveIt"]
 
+[author]
+  name = "南鸵鸟"
+  email = "1151015256@qq.com"
+  link = "https://prohub.pub"
+
 [params]
   # LoveIt 主题版本
   version = "0.2.X"
+  # cdn变量，末尾不需要加/
+  cdnPrefix = "https://cdn.jsdelivr.net"
+  [params.header.title]
+      # LOGO 的 URL
+      logo = "/images/logo.png"
+      # 标题名称
+      # name = "ProHub"
+      # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+      pre = ""
+      # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+      post = ""
+      # LoveIt 新增 | 0.2.5 是否为标题显示打字机动画
+      typeit = false
+# 主页配置
+  [params.home]
+    # LoveIt 新增 | 0.2.0 RSS 文章数目
+    rss = 10
+    # 主页个人信息
+    [params.home.profile]
+      enable = true
+      # Gravatar 邮箱，用于优先在主页显示的头像
+      gravatarEmail = ""
+      # 主页显示头像的 URL
+      avatarURL = "/images/avatar.jpg"
+      # LoveIt 更改 | 0.2.7 主页显示的网站标题 (支持 HTML 格式)
+      title = "南鸵鸟的博客"
+      # 主页显示的网站副标题
+      subtitle = ""
+      # 是否为副标题显示打字机动画
+      typeit = true
+      # 是否显示社交账号
+      social = true
+      # LoveIt 新增 | 0.2.0 免责声明 (支持 HTML 格式)
+      disclaimer = ""
+    # 主页文章列表
+    [params.home.posts]
+      enable = true
+      # 主页每页显示文章数量
+      paginate = 6
+      # LoveIt 删除 | 0.2.0 被 params.page 中的 hiddenFromHomePage 替代
+      # 当你没有在文章前置参数中设置 "hiddenFromHomePage" 时的默认行为
+      defaultHiddenFromHomePage = false
+
+  # 作者的社交信息设置
+  [params.social]
+    GitHub = "xxxx"
+    Linkedin = ""
+    Twitter = "xxxx"
+    Instagram = "xxxx"
+    Facebook = "xxxx"
+    Telegram = "xxxx"
+    Medium = ""
+    Gitlab = ""
+    Youtubelegacy = ""
+    Youtubecustom = ""
+    Youtubechannel = ""
+    Tumblr = ""
+    Quora = ""
+    Keybase = ""
+    Pinterest = ""
+    Reddit = ""
+    Codepen = ""
+    FreeCodeCamp = ""
+    Bitbucket = ""
+    Stackoverflow = ""
+    Weibo = ""
+    Odnoklassniki = ""
+    VK = ""
+    Flickr = ""
+    Xing = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Bandcamp = ""
+    Paypal = ""
+    Fivehundredpx = ""
+    Mix = ""
+    Goodreads = ""
+    Lastfm = ""
+    Foursquare = ""
+    Hackernews = ""
+    Kickstarter = ""
+    Patreon = ""
+    Steam = ""
+    Twitch = ""
+    Strava = ""
+    Skype = ""
+    Whatsapp = ""
+    Zhihu = ""
+    Douban = ""
+    Angellist = ""
+    Slidershare = ""
+    Jsfiddle = ""
+    Deviantart = ""
+    Behance = ""
+    Dribbble = ""
+    Wordpress = ""
+    Vine = ""
+    Googlescholar = ""
+    Researchgate = ""
+    Mastodon = ""
+    Thingiverse = ""
+    Devto = ""
+    Gitea = ""
+    XMPP = ""
+    Matrix = ""
+    Bilibili = ""
+    Email = "xxxx@xxxx.com"
+    RSS = true # LoveIt 新增 | 0.2.0
   [params.app]
     [params.search]
       enable = false
     # Waline comment config (https://waline.js.org/)
     # Waline 评论系统设置 (https://waline.js.org/)
+    [params.page.comment]
+      enable = true
     [params.page.comment.waline]
       enable = true
       #js = "https://cdn.jsdelivr.net/npm/@waline/client@latest"
       js = "https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"
       meta = ['nick','mail','link']                           # 评论者相关属性
       requiredFields = ['nick','mail']                        # 设置必填项，默认匿名
-      placeholder = "提交评论较慢，请等待几秒~"              	# 评论框占位提示符
-      serverURL = ""                 							# Waline的服务端地址（必填）
+      placeholder = "提交评论较慢，请等待几秒~"              	    # 评论框占位提示符
+      serverURL = "https://hugo-waline-chi.vercel.app/"       # Waline的服务端地址（必填）
       #imageHosting =                                         # 图床api，如果允许评论框上传图片
       avatar = "retro"                                        # Gravatar头像
       avatarCDN = "https://sdn.geekzu.org/avatar/"            # Gravatar头像CDN地址，不建议使用loli源
@@ -36,7 +152,6 @@ theme = ["hugo-search-fuse-js", "LoveIt"]
       lang = "zh-CN"                                          # 多语言支持
       visitor = true                                          # 文章访问量统计
       highlight = true                                        # 代码高亮
-
 
 [menu]
   [[menu.main]]
