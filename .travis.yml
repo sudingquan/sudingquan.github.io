@@ -5,13 +5,15 @@ python: 3.7
 
 before_install:
   - sudo apt-get update -qq
+  - sudo apt-get install jq
   - sudo apt-get -yq install apt-transport-https
   - export TZ='Asia/Shanghai'
 
   # install - install any dependencies required
 install:
   # install latest hugo release version
-  - wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/latest | sed -r -n '/browser_download_url/{/Linux-64bit.deb/{s@[^:]*:[[:space:]]*"([^"]*)".*@\1@g;p;q}}' | xargs wget
+  # - wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/latest | sed -r -n '/browser_download_url/{/Linux-64bit.deb/{s@[^:]*:[[:space:]]*"([^"]*)".*@\1@g;p;q}}' | xargs wget
+  - wget -qO- https://api.github.com/repos/gohugoio/hugo/releases/latest | jq '.assets' | jq 'map(.browser_download_url)' | grep extended | grep Linux-64bit.deb | sed 's/,/ /' | sed 's/"/ /' | xargs wget
   - sudo dpkg -i hugo*.deb
   - rm -rf public 2> /dev/null
 
