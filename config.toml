@@ -5,10 +5,6 @@ defaultContentLanguage = "zh-cn"
 languageCode = "zh-CN"
 # 是否包括中日韩文字
 hasCJKLanguage = true
-# 网站标题
-#title = "无标题文档"
-#title = "GayHub"
-#title = "ProHub"
 
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = ["hugo-search-fuse-js", "LoveIt"]
@@ -23,6 +19,13 @@ theme = ["hugo-search-fuse-js", "LoveIt"]
   version = "0.2.X"
   # cdn变量，末尾不需要加/
   cdnPrefix = "https://cdn.jsdelivr.net"
+
+  # Display a message at the beginning of an article to warn the readers that it's content may be outdated.
+  # 在文章末尾显示提示信息，提醒读者文章内容可能过时。
+  [params.outdatedInfoWarning]
+    enable = true
+    hint = 90     # Display hint if the last modified time is more than these days ago.    # 如果文章最后更新于这天数之前，显示提醒
+    warn = 180    # Display warning if the last modified time is more than these days ago.    # 如果文章最后更新于这天数之前，显示警告
 
   # 主页配置
   [params.home]

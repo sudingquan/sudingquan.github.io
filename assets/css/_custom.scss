@@ -189,3 +189,26 @@ header .logo {
 .fixed-button {
 	margin-bottom:3rem
 }
+
+.archive .tag-cloud-tags a sup {
+	color:#a9a9b3
+}
+[theme=dark] .archive .tag-cloud-tags a sup {
+	color:#5d5d5f
+}
+.archive .card-item-title a sup {
+	color:#a9a9b3;
+	font-weight:initial
+}
+.archive .group-title sup {
+	color:#a9a9b3;
+	font-weight:initial
+}
+.archive .single-title.animated.pulse.faster sup {
+	margin-left:.4rem;
+	color:#a9a9b3;
+	font-weight:initial
+}
+[theme=dark] .archive .tag-cloud-tags a sup {
+	color:#a9a9b3
+}
