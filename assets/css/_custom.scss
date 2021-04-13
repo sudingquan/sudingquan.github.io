@@ -138,3 +138,49 @@
 	opacity:0.75;
 	color:black
 }
+
+/* 评论和回到顶部按钮样式 */
+#fixed-buttons {
+	display:none
+}
+.fixed-button {
+	display:none;
+	z-index:100;
+	position:fixed;
+	right:1.5rem;
+	font-size:1rem;
+	line-height:1.3rem;
+	padding:.6rem .6rem;
+	color:#a9a9b3;
+	background:#f8f8f8;
+	-webkit-border-radius:2rem;
+	-moz-border-radius:2rem;
+	border-radius:2rem;
+	-webkit-transition:color 0.4s ease;
+	-moz-transition:color 0.4s ease;
+	-o-transition:color 0.4s ease;
+	transition:color 0.4s ease
+}
+.blur .fixed-button {
+	-webkit-filter:blur(1.5px);
+	-moz-filter:blur(1.5px);
+	-ms-filter:blur(1.5px);
+	filter:blur(1.5px)
+}
+.fixed-button:hover,.fixed-button:active {
+	color:#161209;
+	cursor:pointer
+}
+.fixed-button:active,.fixed-button:focus,.fixed-button:hover {
+	outline:none
+}
+[theme=dark] .fixed-button {
+	color:#5d5d5f;
+	background:#252627
+}
+[theme=dark] .fixed-button:hover,[theme=dark] .fixed-button:active {
+	color:#a9a9b3
+}
+.fixed-button {
+	margin-bottom:3rem
+}
