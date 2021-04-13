@@ -128,3 +128,13 @@
 		animation: octocat-wave 560ms ease-in-out
 	}
 }
+
+/* 评论框图片样式 */
+.v[data-class=v] .veditor {
+	background-size:contain !important;
+	background-repeat:no-repeat !important;
+	background-position:right !important;
+	font-weight:bold;
+	opacity:0.75;
+	color:black
+}
