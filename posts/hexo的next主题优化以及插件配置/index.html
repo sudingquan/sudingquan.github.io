@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Hexo的next主题优化以及插件配置 - </title><meta name="Description" content=""><meta property="og:title" content="Hexo的next主题优化以及插件配置" />
+<meta property="og:description" content="前言 Hexo默认的主题是landscape,但是爱折腾的我显然并不满足于默认主题(真香)，找来找去也就发现了这个便于折腾的主题————Nex" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://prohub.pub/posts/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-12-15T15:16:22&#43;00:00" />
+<meta property="article:modified_time" content="2018-12-15T15:16:22&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hexo的next主题优化以及插件配置"/>
+<meta name="twitter:description" content="前言 Hexo默认的主题是landscape,但是爱折腾的我显然并不满足于默认主题(真香)，找来找去也就发现了这个便于折腾的主题————Nex"/>
+<meta name="application-name" content="">
+<meta name="apple-mobile-web-app-title" content=""><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://prohub.pub/posts/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" /><link rel="prev" href="https://prohub.pub/posts/hexo%E5%8D%9A%E5%AE%A2%E5%A4%87%E4%BB%BD/" /><link rel="next" href="https://prohub.pub/posts/%E7%94%A8chevereto%E6%9D%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9B%BE%E5%BA%8A/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hexo的next主题优化以及插件配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/prohub.pub\/posts\/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE\/"
+        },"genre": "posts","keywords": "hexo","wordcount":  3662 ,
+        "url": "https:\/\/prohub.pub\/posts\/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE\/","datePublished": "2018-12-15T15:16:22+00:00","dateModified": "2018-12-15T15:16:22+00:00","publisher": {
+            "@type": "Organization",
+            "name": "南鸵鸟"},"author": {
+                "@type": "Person",
+                "name": "南鸵鸟"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <a href="https://github.com/sudingquan" class="github-corner" aria-label="View source on GitHub"><svg width="3.5rem" height="3.5rem" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+        <div class="header-title">
+            <a href="/" title=""><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"><i class='fa fa-home'></i> 主页 </a><a class="menu-item" href="/posts/"><i class='fa fa-archive'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fa fa-tags'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fa fa-th'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fa fa-user'></i> 关于 </a><a class="menu-item" href="/search/"><i class='fas fa-fw fa-search'></i> 搜索 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title=""><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title=""><i class='fa fa-home'></i>主页</a><a class="menu-item" href="/posts/" title=""><i class='fa fa-archive'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fa fa-tags'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-th'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fa fa-user'></i>关于</a><a class="menu-item" href="/search/" title=""><i class='fas fa-fw fa-search'></i>搜索</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container">
+                    <div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Hexo的next主题优化以及插件配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://prohub.pub" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>南鸵鸟</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/hexo/"><i class="far fa-folder fa-fw"></i>hexo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-12-15">2018-12-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3662 字
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/posts/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" class="leancloud_visitors" data-flag-title="Hexo的next主题优化以及插件配置">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;
+					<a href="#comments" id="post-meta-vcount" title="查看评论">
+						<i class="fas fa-comment fa-fw"></i>&nbsp;<span id="/posts/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" class="waline-comment-count"></span>&nbsp;条评论
+					</a></div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#安装next">安装NexT</a>
+      <ul>
+        <li><a href="#下载主题">下载主题</a></li>
+        <li><a href="#启用主题">启用主题</a></li>
+        <li><a href="#验证主题">验证主题</a></li>
+      </ul>
+    </li>
+    <li><a href="#主题设定">主题设定</a>
+      <ul>
+        <li><a href="#选择-scheme">选择 Scheme</a></li>
+        <li><a href="#设置语言">设置语言</a></li>
+        <li><a href="#设置作者昵称">设置作者昵称</a></li>
+        <li><a href="#站点描述">站点描述</a></li>
+        <li><a href="#设置头像">设置头像</a></li>
+        <li><a href="#设置阅读全文">设置阅读全文</a></li>
+        <li><a href="#添加gitalk评论功能">添加gitalk评论功能</a></li>
+        <li><a href="#添加标签页面">添加「标签」页面</a></li>
+        <li><a href="#设置代码高亮主题">设置代码高亮主题</a></li>
+        <li><a href="#侧边栏社交链接">侧边栏社交链接</a></li>
+        <li><a href="#开启打赏功能">开启打赏功能</a></li>
+        <li><a href="#友情链接">友情链接</a></li>
+        <li><a href="#设置背景动画">设置「背景动画」</a></li>
+        <li><a href="#设置页面透明度">设置页面透明度</a></li>
+        <li><a href="#添加字数统计和阅读时间">添加字数统计和阅读时间</a></li>
+        <li><a href="#显示当前浏览进度">显示当前浏览进度</a></li>
+        <li><a href="#在右上角或者左上角实现fork-me-on-github">在右上角或者左上角实现fork me on github</a></li>
+        <li><a href="#添加点击爱心效果">添加点击爱心效果</a></li>
+        <li><a href="#文章尾部添加版权信息">文章尾部添加版权信息</a></li>
+        <li><a href="#修改文章底部的那个带号的标签">修改文章底部的那个带#号的标签</a></li>
+        <li><a href="#添加顶部加载条">添加顶部加载条</a></li>
+        <li><a href="#添加搜索服务">添加搜索服务</a></li>
+        <li><a href="#添加分享服务">添加分享服务</a></li>
+        <li><a href="#添加在线聊天daovoice">添加在线聊天DaoVoice</a></li>
+        <li><a href="#添加网站运行时间">添加网站运行时间</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>Hexo默认的主题是landscape,但是<del>爱折腾</del>的我显然并不满足于默认主题(真香)，找来找去也就发现了这个便于折腾的主题————NexT。</p>
+<p>注：在 Hexo 中有两份主要的配置文件，其名称都是<code>_config.yml</code>。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项 。</p>
+<p>为了描述方便，在以下说明中，将前者称为 <code>站点配置文件</code>， 后者称为 <code>主题配置文件</code>。</p>
+<h2 id="安装next">安装NexT</h2>
+<h3 id="下载主题">下载主题</h3>
+<p>在终端窗口下，定位到 Hexo 站点目录下。运行命令<code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>来安装主题。</p>
+<!-- raw HTML omitted -->
+<h3 id="启用主题">启用主题</h3>
+<p>与所有 Hexo 主题启用的模式一样。 当 克隆/下载 完成后，打开 <code>站点配置文件</code>， 找到 theme 字段，并将其值更改为 next。</p>
+<p>到此，NexT 主题安装完成。下一步我们将验证主题是否正确启用。在切换主题之后、验证之前， 我们最好使用 hexo clean 来清除 Hexo 的缓存。</p>
+<h3 id="验证主题">验证主题</h3>
+<p>首先启动 Hexo 本地站点，并开启调试模式（即加上 <code>--debug</code>），整个命令是 <code>hexo s --debug</code>。 在服务启动的过程，注意观察命令行输出是否有任何异常信息，如果你碰到问题，这些信息将帮助他人更好的定位错误。 当命令行输出中提示出：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
+</code></pre></div><p>此时即可使用浏览器访问 http://localhost:4000 ,检查站点是否正确运行。</p>
+<p>现在，你已经成功安装并启用了 NexT 主题。下一步我们将要更改一些主题的设定。</p>
+<h2 id="主题设定">主题设定</h2>
+<h3 id="选择-scheme">选择 Scheme</h3>
+<p>Scheme 是 NexT 提供的一种特性，借助于 Scheme，NexT 为你提供多种不同的外观。同时，几乎所有的配置都可以 在 Scheme 之间共用。目前 NexT 支持四种 Scheme。具体的样式可以参考 <a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></p>
+<p>Scheme 的切换通过更改 <code>主题配置文件</code>，搜索 scheme 关键字。 你会看到有四行 scheme 的配置，将你需用启用的 scheme 前面注释 <code>#</code> 去除即可。</p>
+<h3 id="设置语言">设置语言</h3>
+<p>编辑 <code>站点配置文件</code>， 将 language 设置成中文。配置如下</p>
+<pre><code>language: zh-CN
+</code></pre><h3 id="设置作者昵称">设置作者昵称</h3>
+<p>编辑 <code>站点配置文件</code>， 设置 author 为你的昵称。</p>
+<h3 id="站点描述">站点描述</h3>
+<p>编辑 <code>站点配置文件</code>， 设置 description 字段为你的站点描述。站点描述可以是你喜欢的一句签名:)</p>
+<h3 id="设置头像">设置头像</h3>
+<p>编辑 <code>主题配置文件</code>， 修改字段 avatar， 值设置成头像的链接地址。其中，头像的链接地址可以是：</p>
+<table>
+<thead>
+<tr>
+<th>地址</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>完整的互联网 URI</td>
+<td><a href="http://example.com/avatar.png">http://example.com/avatar.png</a></td>
+</tr>
+<tr>
+<td>站点内的地址</td>
+<td>将头像放置主题目录下的 source/uploads/ （新建 uploads 目录 若不存在）<!-- raw HTML omitted --> 配置为：avatar: /uploads/avatar.png<!-- raw HTML omitted -->或者放置在 source/images/ 目录下<!-- raw HTML omitted -->配置为：avatar: /images/avatar.png</td>
+</tr>
+</tbody>
+</table>
+<h3 id="设置阅读全文">设置阅读全文</h3>
+<p>Hexo 的 Next 主题默认是首页显示你每篇文章的全文内容，但这会使你的首页篇幅过于冗长。</p>
+<p>要解决这个问题，打开 <code>主题配置文件</code>，找到以下代码：</p>
+<pre><code>auto_excerpt:
+      enable: false
+      length: 150
+</code></pre><p>将false改为true，length为预览文章的长度。</p>
+<h3 id="添加gitalk评论功能">添加gitalk评论功能</h3>
+<h4 id="注册新应用">注册新应用</h4>
+<p>在GitHub上注册新应用，链接：https://github.com/settings/applications/new</p>
+<p>参数说明：
+Application name： # 应用名称，随意
+Homepage URL： # 网站URL，如 <a href="https://xxxxxxxx.github.io">https://xxxxxxxx.github.io</a>
+Application description # 描述，随意
+Authorization callback URL：# 网站URL，如 <a href="https://xxxxxxxx.github.io">https://xxxxxxxx.github.io</a></p>
+<p>点击注册后，页面跳转到应用界面，其中<code>Client ID</code>和<code>Client Secret</code>在后面的配置中需要用到，到时复制粘贴即可</p>
+<h4 id="修改主题配置文件">修改主题配置文件</h4>
+<p>在<code>主题配置文件</code>中搜索<code>gitalk</code>字段：</p>
+<pre><code>gitalk:
+  enable: true
+  githubID: github帐号  
+  repo: 仓库名称
+  ClientID: Client ID
+  ClientSecret: Client Secret
+  adminUser: github帐号 #指定可初始化评论账户
+  distractionFreeMode: true
+</code></pre><h3 id="添加标签页面">添加「标签」页面</h3>
+<p>在你的站点目录下，运行命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">hexo new page tags
+</code></pre></div><p>添加分类页面过程类似</p>
+<p>如果有集成评论服务，页面也会带有评论。 若需要关闭的话，请添加字段 comments 并将值设置为 false。</p>
+<h3 id="设置代码高亮主题">设置代码高亮主题</h3>
+<p>NexT 使用 Tomorrow Theme 作为代码高亮，共有5款主题供你选择。 NexT 默认使用的是 白色的 normal 主题，可选的值有 normal，night， night blue， night bright， night eighties。</p>
+<p>更改 highlight_theme 字段，将其值设定成你所喜爱的高亮主题。</p>
+<h3 id="侧边栏社交链接">侧边栏社交链接</h3>
+<p>找到social字段，将注释去掉并修改即可。</p>
+<h3 id="开启打赏功能">开启打赏功能</h3>
+<p>只需要<code>主题配置文件</code> 中填入 微信 和 支付宝 收款二维码图片地址 即可开启该功能。</p>
+<pre><code>reward:
+  enable: true
+  #comment: Donate comment here
+  wechatpay: /images/wechatpay.jpg
+  alipay: /images/alipay.jpg
+  #bitcoin: /images/bitcoin.png
+</code></pre><h3 id="友情链接">友情链接</h3>
+<p>编辑 <code>主题配置文件</code>,修改links字段。</p>
+<h3 id="设置背景动画">设置「背景动画」</h3>
+<ol>
+<li>定位到你的NexT文件夹中，运行命令<code>git clonegit clone https://github.com/theme-next/theme-next-three source/lib/three</code></li>
+<li>修改three_waves,canvas_lines,canvas_sphere任意一种为true</li>
+</ol>
+<h3 id="设置页面透明度">设置页面透明度</h3>
+<p>由于NexT主题默认的背景是不透明的，所以我们刚刚设置的背景动画会被文章挡住，所以我们要修改页面的透明度，主要依靠修改CSS样式来实现</p>
+<h4 id="文章部分">文章部分</h4>
+<p>文件位置 <code>~Hexo根目录/themes/next/source/css/_schemes/Gemini/index.styl</code></p>
+<pre><code>// Post &amp; Comments blocks.
+.post-block {
+  padding: $content-desktop-padding;
+  background: rgba(255,255,255,0.7);
+  box-shadow: $box-shadow-inner;
+  border-radius: $border-radius-inner;
+}
+</code></pre><h4 id="阅读全文按钮">阅读全文按钮</h4>
+<p>文件位置 <code>~Hexo根目录/themes/next/source/css/_variables/Pisces.styl</code></p>
+<pre><code>// Button
+  $btn-default-radius           = 2px
+  $btn-default-bg               = rgba(255,255,255,0.5)
+  $btn-default-color            = $text-color
+  $btn-default-border-color     = $text-color
+  $btn-default-hover-color      = white
+  $btn-default-hover-bg         = $black-deep
+</code></pre><h4 id="分页部分">分页部分</h4>
+<p>文件位置 <code>~Hexo根目录/themes/next/source/css/_schemes/Gemini/index.styl</code></p>
+<pre><code>// Pagination.
+.pagination {
+  .prev, .next, .page-number {
+    margin-bottom: initial;
+    top: initial;
+  }
+  margin: sboffset 0 0;
+  background: rgba(255,255,255,0.7);
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  padding: 10px 0 10px;
+}
+</code></pre><h4 id="评论区部分">评论区部分</h4>
+<p>文件位置 <code>~Hexo根目录/themes/next/source/css/_schemes/Gemini/index.styl</code></p>
+<pre><code>// Comments blocks.
+.comments {
+  padding: $content-desktop-padding;
+  margin: initial;
+  margin-top: sboffset;
+  background: rgba(255,255,255,0.7);
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+}
+</code></pre><h4 id="侧边菜单界面">侧边菜单界面</h4>
+<p>文件位置 <code>~Hexo根目录/themes/next/source/css/_schemes/Pisces/_layout.styl</code></p>
+<pre><code>.header-inner {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  padding: 0;
+  width: $sidebar-desktop;
+  background: rgba(255,255,255,0.7);
+  box-shadow: $box-shadow-inner;
+  border-radius: $border-radius-inner;
+
+  +desktop-large() {
+    .container &amp; { width: $sidebar-desktop; }
+  }
+  +tablet() {
+    position: relative;
+    width: auto;
+    border-radius: initial;
+  }
+  +mobile() {
+    position: relative;
+    width: auto;
+    border-radius: initial;
+  }
+}
+</code></pre><h4 id="个人资料界面">个人资料界面</h4>
+<p>文件位置 <code>~Hexo根目录/themes/next/source/css/_schemes/Pisces/_sidebar.styl</code></p>
+<pre><code>.sidebar-inner {
+//padding: 20px 10px 0;
+  box-sizing: border-box;
+  width: $sidebar-desktop;
+  color: $text-color;
+  background: rgba(255,255,255,0.7);
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  if (hexo-config('motion.enable') and hexo-config('motion.transition.sidebar')) { opacity: 0; }
+
+  &amp;.affix {
+    position: fixed;
+    top: $sidebar-offset;
+  }
+</code></pre><h3 id="添加字数统计和阅读时间">添加字数统计和阅读时间</h3>
+<p>定位到你的博客下，运行以下命令：</p>
+<pre><code>$ npm install hexo-symbols-count-time --save
+</code></pre><p>打开 <code>站点配置文件</code> ,在最后加入以下内容：</p>
+<pre><code>symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+</code></pre><p>打开 <code>主题配置文件</code> ，搜索<code>symbols_count_time</code>并修改成以下内容：</p>
+<pre><code>symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 4
+  wpm: 275
+</code></pre><h3 id="显示当前浏览进度">显示当前浏览进度</h3>
+<p>打开主题配置文件，修改以下内容：</p>
+<pre><code># Back to top in sidebar
+b2t: true
+
+# Scroll percent label in b2t button
+scrollpercent: true
+</code></pre><h3 id="在右上角或者左上角实现fork-me-on-github">在右上角或者左上角实现fork me on github</h3>
+<p>首先在<a href="https://blog.github.com/2008-12-19-github-ribbons/" target="_blank" rel="noopener noreffer">这里</a>或<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener noreffer">这里</a>挑选你喜欢的样式并复制代码，然后将其中的链接改为你自己的github地址，最后打开<code>themes/next/layout/_layout.swig</code>将改好的代码粘贴在<code>&lt;div class=&quot;headband&quot;&gt;&lt;/div&gt;</code>下面。</p>
+<h3 id="添加点击爱心效果">添加点击爱心效果</h3>
+<h4 id="创建js文件">创建js文件</h4>
+<p>在<code>/themes/next/source/js/src</code>下新建文件 <code>clicklove.js</code>,然后将以下代码拷贝进去：</p>
+<pre><code>!function(e,t,a){function n(){c(&quot;.heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}&quot;),o(),r()}function r(){for(var e=0;e&lt;d.length;e++)d[e].alpha&lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText=&quot;left:&quot;+d[e].x+&quot;px;top:&quot;+d[e].y+&quot;px;opacity:&quot;+d[e].alpha+&quot;;transform:scale(&quot;+d[e].scale+&quot;,&quot;+d[e].scale+&quot;) rotate(45deg);background:&quot;+d[e].color+&quot;;z-index:99999&quot;);requestAnimationFrame(r)}function o(){var t=&quot;function&quot;==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e){t&amp;&amp;t(),i(e)}}function i(e){var a=t.createElement(&quot;div&quot;);a.className=&quot;heart&quot;,d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement(&quot;style&quot;);a.type=&quot;text/css&quot;;try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName(&quot;head&quot;)[0].appendChild(a)}function s(){return&quot;rgb(&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;,&quot;+~~(255*Math.random())+&quot;)&quot;}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</code></pre><h4 id="修改_layoutswig">修改_layout.swig</h4>
+<p>在<code>\themes\next\layout\_layout.swig</code>文件末尾添加：</p>
+<pre><code>&lt;!-- 页面点击小红心 --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/clicklove.js&quot;&gt;&lt;/script&gt;
+</code></pre><h3 id="文章尾部添加版权信息">文章尾部添加版权信息</h3>
+<p>打开 <code>主题配置文件</code> ,搜索<code>creative_commons</code>，将<code>post</code>修改为<code>true</code>。</p>
+<h3 id="修改文章底部的那个带号的标签">修改文章底部的那个带#号的标签</h3>
+<p>修改模板<code>/themes/next/layout/_macro/post.swig</code>，搜索 <code>rel=&quot;tag&quot;&gt;#</code>，将 <code>#</code> 换成<code>&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</code></p>
+<h3 id="添加顶部加载条">添加顶部加载条</h3>
+<h4 id="安装插件">安装插件</h4>
+<p>定位到<code>/themes/next</code>，运行以下命令：</p>
+<pre><code>git clone https://github.com/theme-next/theme-next-pace source/lib/pace
+</code></pre><h4 id="修改主题配置文件-1">修改主题配置文件</h4>
+<p>打开 <code>主题配置文件</code> 搜索<code>pace</code>，改为<code>true</code>,然后修改<code>pace-theme</code>为你喜欢的样式</p>
+<h3 id="添加搜索服务">添加搜索服务</h3>
+<p>添加百度/谷歌/本地 自定义站点内容搜索</p>
+<ol>
+<li>在站点的根目录下执行以下命令：</li>
+</ol>
+<pre><code>$ npm install hexo-generator-searchdb --save
+</code></pre><ol start="2">
+<li>编辑 <code>站点配置文件</code> ，新增以下内容到任意位置：</li>
+</ol>
+<pre><code>search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+</code></pre><ol start="3">
+<li>编辑 <code>主题配置文件</code> ，启用本地搜索功能：</li>
+</ol>
+<pre><code># Local search
+local_search:
+  enable: true
+</code></pre><h3 id="添加分享服务">添加分享服务</h3>
+<ol>
+<li>定位到<code>/themes/next</code>,运行以下命令：</li>
+</ol>
+<pre><code>git clone https://github.com/theme-next/theme-next-needmoreshare2 source/lib/needsharebutton
+</code></pre><ol start="2">
+<li>编辑 <code>主题配置文件</code></li>
+</ol>
+<pre><code>needmoreshare2:
+  enable: true
+  postbottom:
+    enable: true
+  float:
+    enable: true
+</code></pre><h3 id="添加在线聊天daovoice">添加在线聊天DaoVoice</h3>
+<h4 id="注册">注册</h4>
+<p>首先需要注册一个 DaoVoice，<a href="http://dashboard.daovoice.io/get-started?invite_code=7f3d6e70" target="_blank" rel="noopener noreffer">点击注册</a></p>
+<p>注册成功后，进入后台控制台，进入到 <code>应用设置--&gt;安装到网站</code> 页面，可以得到一个 <code>app_id</code>。</p>
+<h4 id="设置">设置</h4>
+<p>打开 <code>themes/next/layout/_partials/head.swig</code> 文件中添加如下代码，位置随意：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">{<span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">if</span> <span style="color:#960050;background-color:#1e0010">theme.daovoice</span> <span style="color:#960050;background-color:#1e0010">%</span>}
+  <span style="color:#f92672">&lt;</span><span style="color:#f92672">script</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">(</span><span style="color:#f92672">function</span><span style="color:#f92672">(</span><span style="color:#f92672">i</span><span style="color:#f92672">,</span><span style="color:#f92672">s</span><span style="color:#f92672">,</span><span style="color:#f92672">o</span><span style="color:#f92672">,</span><span style="color:#f92672">g</span><span style="color:#f92672">,</span><span style="color:#f92672">r</span><span style="color:#f92672">,</span><span style="color:#f92672">a</span><span style="color:#f92672">,</span><span style="color:#f92672">m</span><span style="color:#f92672">)</span>{<span style="color:#960050;background-color:#1e0010">i[&#34;DaoVoiceObject&#34;]=r</span>;<span style="color:#960050;background-color:#1e0010">i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)</span>}<span style="color:#f92672">,</span><span style="color:#f92672">i</span><span style="color:#f92672">[</span><span style="color:#f92672">r</span><span style="color:#f92672">]</span>.<span style="color:#a6e22e">l</span><span style="color:#f92672">=</span><span style="color:#f92672">1</span><span style="color:#f92672">*</span><span style="color:#f92672">new</span> <span style="color:#f92672">Date</span><span style="color:#f92672">();</span><span style="color:#f92672">a</span><span style="color:#f92672">=</span><span style="color:#f92672">s</span>.<span style="color:#a6e22e">createElement</span><span style="color:#f92672">(</span><span style="color:#f92672">o</span><span style="color:#f92672">),</span><span style="color:#f92672">m</span><span style="color:#f92672">=</span><span style="color:#f92672">s</span>.<span style="color:#a6e22e">getElementsByTagName</span><span style="color:#f92672">(</span><span style="color:#f92672">o</span><span style="color:#f92672">)[</span><span style="color:#f92672">0</span><span style="color:#f92672">];</span><span style="color:#f92672">a</span>.<span style="color:#a6e22e">async</span><span style="color:#f92672">=</span><span style="color:#f92672">1</span><span style="color:#f92672">;</span><span style="color:#f92672">a</span>.<span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#f92672">g</span><span style="color:#f92672">;</span><span style="color:#f92672">a</span>.<span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">;</span><span style="color:#f92672">m</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">insertBefore</span><span style="color:#f92672">(</span><span style="color:#f92672">a</span><span style="color:#f92672">,</span><span style="color:#f92672">m</span><span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">}</span><span style="color:#f92672">)(</span><span style="color:#f92672">window</span><span style="color:#f92672">,</span><span style="color:#f92672">document</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;script&#34;</span><span style="color:#f92672">,(</span><span style="color:#e6db74">&#39;https:&#39;</span> <span style="color:#f92672">==</span> <span style="color:#f92672">document</span>.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">protocol</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;https:&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;http:&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;//widget.daovoice.io/widget/0f81ff2f.js&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;daovoice&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#f92672">daovoice</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;init&#39;</span><span style="color:#f92672">,</span> {
+      app_id: <span style="color:#e6db74">&#34;{{theme.daovoice_app_id}}&#34;</span>
+    }<span style="color:#f92672">);</span>
+  <span style="color:#f92672">daovoice</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;update&#39;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">&lt;/</span><span style="color:#f92672">script</span><span style="color:#f92672">&gt;</span>
+{<span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">endif</span> <span style="color:#960050;background-color:#1e0010">%</span>}
+</code></pre></div><p>打开 <code>主题配置文件</code> ，添加以下代码：</p>
+<pre><code># Online contact
+daovoice: true
+daovoice_app_id: 这里输入前面获取的app_id
+</code></pre><h3 id="添加网站运行时间">添加网站运行时间</h3>
+<p>打开 <code>\themes\next\layout\_partial\footer.ejs</code> 文件下添加以下代码：</p>
+<pre><code>&lt;span id=&quot;timeDate&quot;&gt;载入天数...&lt;/span&gt;&lt;span id=&quot;times&quot;&gt;载入时分秒...&lt;/span&gt;
+&lt;script&gt;
+    var now = new Date();
+    function createtime() {
+        var grt= new Date(&quot;12/04/2018 00:00:00&quot;);//在此处修改你的建站时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = &quot;0&quot; + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = &quot;0&quot; + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = &quot;0&quot; + snum;}
+        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;本博客已萌萌哒运行 &quot;+dnum+&quot; 天 &quot;;
+        document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; 小时 &quot; + mnum + &quot; 分 &quot; + snum + &quot; 秒&quot;;
+    }
+setInterval(&quot;createtime()&quot;,250);
+&lt;/script&gt;
+</code></pre><div class="details admonition warning open">
+			<div class="details-summary admonition-title">
+				<i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
+		    </div>
+			<div class="details-content">
+				<div class="admonition-content">
+					本文最后更新于 <span class="timeago" datetime="2018-12-15T15:16:22" title="2018-12-15">2018-12-15</span>，文中内容可能已过时，请谨慎使用。</div>
+			</div>
+		 </div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2018-12-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hexo/">hexo</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/hexo%E5%8D%9A%E5%AE%A2%E5%A4%87%E4%BB%BD/" class="prev" rel="prev" title="Hexo博客备份"><i class="fas fa-angle-left fa-fw"></i>Hexo博客备份</a>
+            <a href="/posts/%E7%94%A8chevereto%E6%9D%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9B%BE%E5%BA%8A/" class="next" rel="next" title="用chevereto来搭建自己的图床">用chevereto来搭建自己的图床<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="waline"></div>
+			<script src='https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+
+			<script>
+		    	new Waline({
+		    	  el: '#waline',
+				  meta: ["nick","mail","link"],
+				  placeholder: "提交评论较慢，请等待几秒~",
+		    	  serverURL: "https://hugo-waline-chi.vercel.app/",
+		    	  avatarCDN: "https://sdn.geekzu.org/avatar/",
+		    	  requiredFields: ["nick","mail"],
+		    	  pageSize:  10 ,
+		    	  avatar: "retro",
+		    	  lang: "zh-CN",
+				  visitor:  true ,
+				  highlight:  true 
+		    	});
+		    </script></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://prohub.pub" target="_blank">南鸵鸟</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+    </footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><div class="sidebar_wo">
+            <div id="leimu">
+              <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png" alt="雷姆" 
+              onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuB.png'" 
+              onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png'" title="回到顶部">
+            </div>
+            <div class="sidebar_wo" id="lamu">
+              <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png" alt="雷姆" 
+              onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuB.png'" 
+              onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png'" title="回到底部">
+            </div>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script><script type="text/javascript" src="/js/custom.js"></script></body>
+</html>

@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>linux - 分类 - </title>
+        <link>https://prohub.pub/categories/linux/</link>
+        <description>linux - 分类 - </description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1151015256@qq.com (南鸵鸟)</managingEditor>
+            <webMaster>1151015256@qq.com (南鸵鸟)</webMaster><lastBuildDate>Tue, 09 Jul 2019 14:56:21 &#43;0000</lastBuildDate><atom:link href="https://prohub.pub/categories/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>linux中IO多路复用的三种方式select、poll、epoll</title>
+    <link>https://prohub.pub/posts/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll/</link>
+    <pubDate>Tue, 09 Jul 2019 14:56:21 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://prohub.pub/posts/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll/</guid>
+    <description><![CDATA[I/O多路复用的本质是通过一种机制（系统内核缓冲I/O数据），让单个进程可以监视多个文件描述符，一旦某个描述符就绪（一般是读就绪或写就绪），]]></description>
+</item><item>
+    <title>linux select函数用法详解</title>
+    <link>https://prohub.pub/posts/linux-select%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</link>
+    <pubDate>Sat, 06 Jul 2019 20:31:59 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://prohub.pub/posts/linux-select%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/</guid>
+    <description><![CDATA[简介 在程序进行工作时，有可能会发生阻塞。所谓阻塞，顾名思义，就是进程或是线程执行到这些函数时必须等待某个事件的发生，如果事件没有发生，进程或]]></description>
+</item><item>
+    <title>用chevereto来搭建自己的图床</title>
+    <link>https://prohub.pub/posts/%E7%94%A8chevereto%E6%9D%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9B%BE%E5%BA%8A/</link>
+    <pubDate>Fri, 10 May 2019 11:27:20 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://prohub.pub/posts/%E7%94%A8chevereto%E6%9D%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9B%BE%E5%BA%8A/</guid>
+    <description><![CDATA[说明 前段时间买了一个阿里云的学生服务器，之前一直用作学习linux的工具。最近写markdown文档的时候发现自己缺一个图床，于是我就想到了]]></description>
+</item></channel>
+</rss>

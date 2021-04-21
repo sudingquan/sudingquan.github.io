@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>linux中IO多路复用的三种方式select、poll、epoll - </title><meta name="Description" content=""><meta property="og:title" content="linux中IO多路复用的三种方式select、poll、epoll" />
+<meta property="og:description" content="I/O多路复用的本质是通过一种机制（系统内核缓冲I/O数据），让单个进程可以监视多个文件描述符，一旦某个描述符就绪（一般是读就绪或写就绪），" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://prohub.pub/posts/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-07-09T14:56:21&#43;00:00" />
+<meta property="article:modified_time" content="2019-07-09T14:56:21&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="linux中IO多路复用的三种方式select、poll、epoll"/>
+<meta name="twitter:description" content="I/O多路复用的本质是通过一种机制（系统内核缓冲I/O数据），让单个进程可以监视多个文件描述符，一旦某个描述符就绪（一般是读就绪或写就绪），"/>
+<meta name="application-name" content="">
+<meta name="apple-mobile-web-app-title" content=""><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://prohub.pub/posts/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll/" /><link rel="prev" href="https://prohub.pub/posts/linux-select%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "linux中IO多路复用的三种方式select、poll、epoll",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/prohub.pub\/posts\/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll\/"
+        },"genre": "posts","keywords": "linux","wordcount":  2749 ,
+        "url": "https:\/\/prohub.pub\/posts\/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll\/","datePublished": "2019-07-09T14:56:21+00:00","dateModified": "2019-07-09T14:56:21+00:00","publisher": {
+            "@type": "Organization",
+            "name": "南鸵鸟"},"author": {
+                "@type": "Person",
+                "name": "南鸵鸟"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <a href="https://github.com/sudingquan" class="github-corner" aria-label="View source on GitHub"><svg width="3.5rem" height="3.5rem" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+        <div class="header-title">
+            <a href="/" title=""><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"><i class='fa fa-home'></i> 主页 </a><a class="menu-item" href="/posts/"><i class='fa fa-archive'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fa fa-tags'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fa fa-th'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fa fa-user'></i> 关于 </a><a class="menu-item" href="/search/"><i class='fas fa-fw fa-search'></i> 搜索 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title=""><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title=""><i class='fa fa-home'></i>主页</a><a class="menu-item" href="/posts/" title=""><i class='fa fa-archive'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fa fa-tags'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fa fa-th'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fa fa-user'></i>关于</a><a class="menu-item" href="/search/" title=""><i class='fas fa-fw fa-search'></i>搜索</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container">
+                    <div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">linux中IO多路复用的三种方式select、poll、epoll</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://prohub.pub" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>南鸵鸟</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-07-09">2019-07-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2749 字
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/posts/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll/" class="leancloud_visitors" data-flag-title="linux中IO多路复用的三种方式select、poll、epoll">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;
+					<a href="#comments" id="post-meta-vcount" title="查看评论">
+						<i class="fas fa-comment fa-fw"></i>&nbsp;<span id="/posts/linux%E4%B8%ADio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8Fselectpollepoll/" class="waline-comment-count"></span>&nbsp;条评论
+					</a></div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#io多路复用">IO多路复用</a></li>
+    <li><a href="#select">Select</a>
+      <ul>
+        <li><a href="#参数说明">参数说明</a></li>
+        <li><a href="#返回值">返回值</a></li>
+        <li><a href="#select运行机制">Select运行机制</a></li>
+        <li><a href="#select的问题">Select的问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#poll">Poll</a>
+      <ul>
+        <li><a href="#参数说明-1">参数说明</a></li>
+        <li><a href="#返回值-1">返回值</a></li>
+      </ul>
+    </li>
+    <li><a href="#epoll">Epoll</a>
+      <ul>
+        <li><a href="#epoll实现">Epoll实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>I/O多路复用的本质是通过一种机制（系统内核缓冲I/O数据），让单个进程可以监视多个文件描述符，一旦某个描述符就绪（一般是读就绪或写就绪），能够通知程序进行相应的读写操作</p>
+</blockquote>
+<h2 id="io多路复用">IO多路复用</h2>
+<p>select、poll 和 epoll 都是 Linux 提供的 IO 多路复用方式。</p>
+<p>与多进程和多线程相比，IO多路复用的最大优点是系统开销小，系统不必创建进程/线程，也不必维护这些进程/线程，从而大大减小了系统的开销。</p>
+<h2 id="select">Select</h2>
+<p>首先分析一下<code>select</code>函数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">int</span> nfds, fd_set <span style="color:#f92672">*</span>readfds, fd_set <span style="color:#f92672">*</span>writefds,fd_set <span style="color:#f92672">*</span>exceptfds, <span style="color:#66d9ef">struct</span> timeval <span style="color:#f92672">*</span>timeout);
+</code></pre></div><h3 id="参数说明">参数说明</h3>
+<p><strong>int nfds</strong> 的值为所有文件描述符中的最大值加1。</p>
+<p><strong>fd_set *readfds , fd_set *writefds , fd_set *exceptfds</strong>
+可以理解成一个集合，其中的元素是文件描述符。fd_set类型变量每一位代表了一个描述符。我们也可以认为它只是一个由很多二进制位构成的数组。中间的三个参数指定我们要让内核测试读、写和异常条件的文件描述符集合。如果对某一个的条件不感兴趣，就可以把它设为<code>NULL</code>。</p>
+<p><strong>struct timeval *timeout</strong> 指定了<code>select</code>等待文件描述符做好准备的时间。</p>
+<h3 id="返回值">返回值</h3>
+<p>返回<code>fd_set</code>集合中就绪的读、写，或出错的文件描述符数量，返回0表示超时，返回-1表示出错；</p>
+<!-- raw HTML omitted -->
+<h3 id="select运行机制">Select运行机制</h3>
+<p><code>select</code>的机制中提供一种<code>fd_set</code>的数据结构，实际上是一个long类型的数组，每一个数组元素都能与一打开的文件描述符建立联系，当调用<code>select</code>时，由内核根据IO状态修改fd_set的内容，由此来通知执行了<code>select</code>的进程哪一文件描述符变为了就绪状态。</p>
+<h3 id="select的问题">Select的问题</h3>
+<ol>
+<li>我们从<code>select</code>那里仅仅知道了，有I/O事件发生了，但却并不知道是哪个元素，我们只能无差别遍历集合中所有的元素，这样的话时间复杂度为O(n)，而且如果同时监视的元素越多，这个时间越长。</li>
+<li>为了减少数据拷贝带来的性能损坏，内核对被监控的<code>fd_set</code>集合大小做了限制，并且这个是通过宏控制的，大小不可改变(限制为1024)。</li>
+</ol>
+<h2 id="poll">Poll</h2>
+<p>poll的机制与select类似，与select在本质上没有多大差别，管理多个描述符也是进行轮询，根据描述符的状态进行处理，但是poll没有最大文件描述符数量的限制。也就是说，poll解决了上述的问题2，但是没有解决性能开销较大的问题</p>
+<p><code>poll</code>函数原型如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">poll</span>(<span style="color:#66d9ef">struct</span> pollfd <span style="color:#f92672">*</span>fds, nfds_t nfds, <span style="color:#66d9ef">int</span> timeout);
+
+<span style="color:#66d9ef">struct</span> pollfd {
+  <span style="color:#66d9ef">int</span>   fd;         <span style="color:#75715e">/* file descriptor */</span>
+  <span style="color:#66d9ef">short</span> events;     <span style="color:#75715e">/* requested events */</span>
+  <span style="color:#66d9ef">short</span> revents;    <span style="color:#75715e">/* returned events */</span>
+};
+</code></pre></div><p><code>poll</code>改变了文件描述符集合的存储方式，使用了<code>pollfd</code>结构而不是<code>select</code>的<code>fd_set</code>结构，使得<code>poll</code>支持的文件描述符集合远大于<code>select</code>的1024。</p>
+<h3 id="参数说明-1">参数说明</h3>
+<p><strong>struct pollfd *fds</strong> <code>fds</code>是一个<code>struct pollfd</code>类型的数组，用于存放需要检测其状态的socket描述符，一个<code>pollfd</code>结构体表示一个被监视的文件描述符其中。</p>
+<p><strong>nfds_t nfds</strong> 记录数组<code>fds</code>中描述符的总数量</p>
+<p><strong>int timeout</strong>类似<code>select</code>的<code>struct timeval</code>，为超时时间。</p>
+<h3 id="返回值-1">返回值</h3>
+<p>类似于<code>select</code>函数，返回<code>fds</code>集合中就绪的读、写，或出错的文件描述符数量，返回0表示超时，返回-1表示出错；</p>
+<h2 id="epoll">Epoll</h2>
+<p>epoll在Linux2.6内核正式提出，是基于事件驱动的I/O方式，相对于select来说，epoll没有描述符个数限制，使用一个文件描述符管理多个描述符，将用户关心的文件描述符的事件存放到内核的一个事件表中，这样在用户空间和内核空间的copy只需一次。</p>
+<p>linux提供的epoll相关的函数如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">epoll_create</span>(<span style="color:#66d9ef">int</span> size);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">epoll_ctl</span>(<span style="color:#66d9ef">int</span> epfd, <span style="color:#66d9ef">int</span> op, <span style="color:#66d9ef">int</span> fd, <span style="color:#66d9ef">struct</span> epoll_event <span style="color:#f92672">*</span>event);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">epoll_wait</span>(<span style="color:#66d9ef">int</span> epfd, <span style="color:#66d9ef">struct</span> epoll_event <span style="color:#f92672">*</span> events, <span style="color:#66d9ef">int</span> maxevents, <span style="color:#66d9ef">int</span> timeout);
+</code></pre></div><ol>
+<li>
+<p><strong>epoll_create</strong> 函数创建一个epoll描述符，参数<code>size</code>表明要监听的描述符数量。调用成功时返回一个epoll描述符，失败时返回-1。</p>
+<p>注意：使用完epoll后，必须调用close()关闭，否则可能导致fd被耗尽。</p>
+</li>
+<li>
+<p><strong>epoll_ctl</strong> 函数注册要监听的事件类型。四个参数解释如下：</p>
+<ul>
+<li><code>epfd</code> 表示epoll描述符。</li>
+<li><code>op</code>表示fd操作类型，有如下3种：
+<ul>
+<li><code>EPOLL_CTL_ADD</code>添加新的fd到epfd中</li>
+<li><code>EPOLL_CTL_MOD</code>修改已存在的fd的监听事件</li>
+<li><code>EPOLL_CTL_DEL</code>从epfd中删除一个fd</li>
+</ul>
+</li>
+<li><code>fd</code> 是要监听的描述符。</li>
+<li><code>event</code> 表示要监听的事件。</li>
+</ul>
+<p>epoll_event 结构体定义如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">struct</span> epoll_event {
+    __uint32_t events;  <span style="color:#75715e">/* Epoll events */</span>
+    epoll_data_t data;  <span style="color:#75715e">/* User data variable */</span>
+};
+   
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">union</span> epoll_data {
+    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr;
+    <span style="color:#66d9ef">int</span> fd;
+    __uint32_t u32;
+    __uint64_t u64;
+} epoll_data_t;
+</code></pre></div><p><code>events</code>可以是以下几个宏的集合：</p>
+<p><code>EPOLLIN</code>：表示对应的文件描述符可以读（包括对端SOCKET正常关闭）；
+<code>EPOLLOUT</code>：表示对应的文件描述符可以写；
+<code>EPOLLPRI</code>：表示对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）；
+<code>EPOLLERR</code>：表示对应的文件描述符发生错误；
+<code>EPOLLHUP</code>：表示对应的文件描述符被挂断；
+<code>EPOLLET</code>： 将EPOLL设为边缘触发(Edge Triggered)模式，这是相对于水平触发(Level Triggered)来说的。
+<code>EPOLLONESHOT</code>：只监听一次事件，当监听完这次事件之后，如果还需要继续监听这个socket的话，需要再次把这个socket加入到EPOLL队列里</p>
+</li>
+<li>
+<p><strong>epoll_wait</strong> 函数等待事件的就绪，成功时返回就绪的事件数目，调用失败时返回 -1，等待超时返回 0。</p>
+<ul>
+<li><code>epfd</code> 是epoll描述符</li>
+<li><code>events</code> 表示从内核得到的就绪事件集合</li>
+<li><code>maxevents</code> events的大小</li>
+<li><code>timeout</code> 表示等待的超时事件</li>
+</ul>
+</li>
+</ol>
+<h3 id="epoll实现">Epoll实现</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#define PORT 8888
+</span><span style="color:#75715e">#define MAX_EVENTS 10
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">creat_listen_socket</span>() {
+    <span style="color:#66d9ef">int</span> listen_socket;
+    <span style="color:#66d9ef">if</span> ((listen_socket <span style="color:#f92672">=</span> socket(AF_INET, SOCK_STREAM, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+        perror(<span style="color:#e6db74">&#34;socket() error&#34;</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">struct</span> sockaddr_in my_addr;
+    memset(<span style="color:#f92672">&amp;</span>my_addr, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(my_addr));
+    my_addr.sin_family <span style="color:#f92672">=</span> AF_INET;
+    my_addr.sin_port <span style="color:#f92672">=</span> htons(PORT);
+    my_addr.sin_addr.s_addr <span style="color:#f92672">=</span> htonl(INADDR_ANY);
+    <span style="color:#66d9ef">if</span> (bind(listen_socket, (<span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>my_addr, <span style="color:#66d9ef">sizeof</span>(my_addr)) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+        perror(<span style="color:#e6db74">&#34;bind&#34;</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">if</span> (listen(listen_socket, <span style="color:#ae81ff">5</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+        perror(<span style="color:#e6db74">&#34;listen&#34;</span>);
+    }
+    <span style="color:#66d9ef">return</span> listen_socket;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">struct</span> epoll_event ev, events[MAX_EVENTS];
+    <span style="color:#66d9ef">int</span> listen_sock, conn_sock, nfds, epollfd;
+    <span style="color:#75715e">/* Code to set up listening socket, &#39;listen_sock&#39;,
+</span><span style="color:#75715e">       (socket(), bind(), listen()) omitted */</span>
+    listen_sock <span style="color:#f92672">=</span> creat_listen_socket();
+    epollfd <span style="color:#f92672">=</span> epoll_create1(<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">if</span> (epollfd <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        perror(<span style="color:#e6db74">&#34;epoll_create1&#34;</span>);
+        exit(EXIT_FAILURE);
+    }
+
+    ev.events <span style="color:#f92672">=</span> EPOLLIN;
+    ev.data.fd <span style="color:#f92672">=</span> listen_sock;
+    <span style="color:#66d9ef">if</span> (epoll_ctl(epollfd, EPOLL_CTL_ADD, listen_sock, <span style="color:#f92672">&amp;</span>ev) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        perror(<span style="color:#e6db74">&#34;epoll_ctl: listen_sock&#34;</span>);
+        exit(EXIT_FAILURE);
+    }
+
+    <span style="color:#66d9ef">for</span> (;;) {
+        nfds <span style="color:#f92672">=</span> epoll_wait(epollfd, events, MAX_EVENTS, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">if</span> (nfds <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            perror(<span style="color:#e6db74">&#34;epoll_wait&#34;</span>);
+            exit(EXIT_FAILURE);
+        }
+        <span style="color:#66d9ef">struct</span> sockaddr_in client_addr;
+        <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> addrlen <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(client_addr);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; n <span style="color:#f92672">&lt;</span> nfds; <span style="color:#f92672">++</span>n) {
+            <span style="color:#66d9ef">if</span> (events[n].data.fd <span style="color:#f92672">==</span> listen_sock) {
+                conn_sock <span style="color:#f92672">=</span> accept(listen_sock, (<span style="color:#66d9ef">struct</span> sockaddr <span style="color:#f92672">*</span>) <span style="color:#f92672">&amp;</span>client_addr, <span style="color:#f92672">&amp;</span>addrlen);
+                <span style="color:#66d9ef">if</span> (conn_sock <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+                    perror(<span style="color:#e6db74">&#34;accept&#34;</span>);
+                    exit(EXIT_FAILURE);
+                }
+                <span style="color:#66d9ef">int</span> imode <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                ioctl(conn_sock, FIONBIO, <span style="color:#f92672">&amp;</span>imode); <span style="color:#75715e">//将新连接设置成非阻塞状态
+</span><span style="color:#75715e"></span>                ev.events <span style="color:#f92672">=</span> EPOLLIN <span style="color:#f92672">|</span> EPOLLET; <span style="color:#75715e">//将新连接加入epoll监听
+</span><span style="color:#75715e"></span>                ev.data.fd <span style="color:#f92672">=</span> conn_sock;
+                <span style="color:#66d9ef">if</span> (epoll_ctl(epollfd, EPOLL_CTL_ADD, conn_sock, <span style="color:#f92672">&amp;</span>ev) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+                    perror(<span style="color:#e6db74">&#34;epoll_ctl: conn_sock&#34;</span>);
+                    exit(EXIT_FAILURE);
+                }
+            } <span style="color:#66d9ef">else</span> {
+                do_use_fd(events[n].data.fd);
+            }
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h2 id="总结">总结</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">select</th>
+<th style="text-align:center">poll</th>
+<th style="text-align:center">Epoll</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">操作方式</td>
+<td style="text-align:center">遍历</td>
+<td style="text-align:center">遍历</td>
+<td style="text-align:center">回调</td>
+</tr>
+<tr>
+<td style="text-align:center">底层实现</td>
+<td style="text-align:center">数组</td>
+<td style="text-align:center">链表</td>
+<td style="text-align:center">哈希表</td>
+</tr>
+<tr>
+<td style="text-align:center">IO效率</td>
+<td style="text-align:center">每次调用都进行线性遍历，时间复杂度为O(n)</td>
+<td style="text-align:center">每次调用都进行线性遍历，时间复杂度为O(n)</td>
+<td style="text-align:center">事件通知方式，每当fd就绪，系统注册的回调函数就会被调用，将就绪fd放到readyList里面，时间复杂度O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">最大连接数</td>
+<td style="text-align:center">1024（x86）或2048（x64）</td>
+<td style="text-align:center">无上限</td>
+<td style="text-align:center">无上限</td>
+</tr>
+<tr>
+<td style="text-align:center">fd拷贝</td>
+<td style="text-align:center">每次调用select，都需要把fd集合从用户态拷贝到内核态</td>
+<td style="text-align:center">每次调用poll，都需要把fd集合从用户态拷贝到内核态</td>
+<td style="text-align:center">调用epoll_ctl时拷贝进内核并保存，之后每次epoll_wait不拷贝</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>既然select，poll，epoll都是I/O多路复用的具体的实现，之所以现在同时存在，其实他们也是不同历史时期的产物</em></p>
+<ul>
+<li><em>select出现是1984年在BSD里面实现的</em>。</li>
+<li><em>14年之后也就是1997年才实现了poll，其实拖那么久也不是效率问题， 而是那个时代的硬件实在太弱，一台服务器处理1千多个链接简直就是神一样的存在了，select很长段时间已经满足需求</em>。</li>
+<li><em>2002, 大神 Davide Libenzi 实现了epoll</em>。</li>
+</ul>
+<div class="details admonition warning open">
+			<div class="details-summary admonition-title">
+				<i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
+		    </div>
+			<div class="details-content">
+				<div class="admonition-content">
+					本文最后更新于 <span class="timeago" datetime="2019-07-09T14:56:21" title="2019-07-09">2019-07-09</span>，文中内容可能已过时，请谨慎使用。</div>
+			</div>
+		 </div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-07-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/linux-select%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="prev" rel="prev" title="linux select函数用法详解"><i class="fas fa-angle-left fa-fw"></i>linux select函数用法详解</a></div>
+</div>
+<div id="comments"><div id="waline"></div>
+			<script src='https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+
+			<script>
+		    	new Waline({
+		    	  el: '#waline',
+				  meta: ["nick","mail","link"],
+				  placeholder: "提交评论较慢，请等待几秒~",
+		    	  serverURL: "https://hugo-waline-chi.vercel.app/",
+		    	  avatarCDN: "https://sdn.geekzu.org/avatar/",
+		    	  requiredFields: ["nick","mail"],
+		    	  pageSize:  10 ,
+		    	  avatar: "retro",
+		    	  lang: "zh-CN",
+				  visitor:  true ,
+				  highlight:  true 
+		    	});
+		    </script></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://prohub.pub" target="_blank">南鸵鸟</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+    </footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><div class="sidebar_wo">
+            <div id="leimu">
+              <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png" alt="雷姆" 
+              onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuB.png'" 
+              onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/leimuA.png'" title="回到顶部">
+            </div>
+            <div class="sidebar_wo" id="lamu">
+              <img src="https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png" alt="雷姆" 
+              onmouseover="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuB.png'" 
+              onmouseout="this.src='https://cdn.jsdelivr.net/gh/lewky/lewky.github.io@master/images/b2t/lamuA.png'" title="回到底部">
+            </div>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script><script type="text/javascript" src="/js/custom.js"></script></body>
+</html>
